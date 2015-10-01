@@ -3,6 +3,9 @@ from system.core.model import Model
 class user(Model):
 	def __init__(self):
 		super(user, self).__init__()
+	def fetch_user_info_id(self,id):
+		fetch_user_info_id_query="select * from users where id={}".format(id)
+		return self.db.query_db(fetch_user_info_id_query)[0]
 	def fetch_last_user(self):
 		fetch_last_query="select * from users order by id desc limit 1"
 		added_last=self.db.query_db(fetch_last_query)[0]
@@ -12,6 +15,7 @@ class user(Model):
 		create_user_query = "INSERT INTO users (firstName, lastName, email, password, created_at, updated_at) VALUES ('{}', '{}','{}','{}',NOW(),NOW())".format(info['firstName'], info['lastName'], info['email'], pw_hash)
 		self.db.query_db(create_user_query)
 		return self.fetch_last_user()
+
 	def update(self):
 		# query =
 		# self.db.query_db(query)

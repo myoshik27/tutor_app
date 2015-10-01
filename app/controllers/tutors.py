@@ -6,6 +6,9 @@ class tutors(Controller):
 		self.load_model('tutor')
 		self.load_model('user')
 	def loginPage(self):
+		# if session:
+		# 	if session['tutor_id']:
+		# 		return redirect('tutors/tutor_home.html')
 		return self.load_view('tutors/tutor_login.html')
 	def create(self):
 		tutor_info = {
@@ -24,11 +27,11 @@ class tutors(Controller):
 		}
 		tutor = self.models['tutor'].login(tutor_info)
 		if tutor['status'] == True:
-			session['id'] = tutor['tutor_info']['id']
-			session['first_name'] = tutor['tutor_info']['firstName']
 			return redirect('/tutors/home/'+str(tutor['tutor_info']['id']))
 		else:
 			return redirect('/tutor_login')
 	def home(self,id):
-		session['id']=id
+		user_info=self.models['user'].fetch_user_info_id(id)
+		session['id']=user_info['id']
+		session['firstName']=user_info['firstName']
 		return self.load_view('/tutors/tutor_home.html')

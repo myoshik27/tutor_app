@@ -24,12 +24,11 @@ class students(Controller):
 		}
 		student = self.models['student'].login(student_info)
 		if student['status'] == True:
-			session['id'] = student['student_info']['id']
-			session['first_name'] = student['student_info']['firstName']
 			return redirect('/students/home/'+str(student['student_info']['id']))
 		else:
 			return redirect('/student_login')
-
 	def home(self,id):
-		session['id']= id
+		user_info=self.models['user'].fetch_user_info_id(id)
+		session['id']=user_info['id']
+		session['firstName']=user_info['firstName']
 		return self.load_view('/students/student_home.html')

@@ -11,7 +11,9 @@
 <body>
 <div class="container">
 	<h1> WELCOME! </h1>
-	<h2>You are logged in as {{session}}</h2>
+	{% if session %}
+	<h2>You are logged in as {{session['firstName']}}</h2>
+	{% endif %}
     <button name="tutor"><a href="/tutors/loginPage">Tutors</a></button>
     <button name="students"><a href="/students/loginPage">Students</a></button>
 </div>

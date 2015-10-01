@@ -10,3 +10,6 @@ class users(Controller):
 		pass
 	def update(self):
 		pass
+	def logout(self):
+		session.clear()
+		return redirect('/')
