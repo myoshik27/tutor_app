@@ -4,7 +4,7 @@
 """ Put Generic Database Configurations here """
 class DBConfig(object):
     """ DB_ON must be True to use the DB! """
-    DB_ON = True
+    DB_ON = False
     DB_DRIVER = 'mysql'
     DB_ORM = False
 
@@ -12,7 +12,7 @@ class DBConfig(object):
 class DevelopmentDBConfig(DBConfig):
     DB_USERNAME = 'root'
     DB_PASSWORD = 'root'
-    DB_DATABASE_NAME = 'user_dashboard'
+    DB_DATABASE_NAME = 'mydb'
     DB_HOST = 'hello'
     """ unix_socket is used for connecting with MAMP. Take this out if you aren't using MAMP """
     DB_OPTIONS = {
@@ -23,14 +23,14 @@ class DevelopmentDBConfig(DBConfig):
 class StagingDBConfig(DBConfig):
     DB_USERNAME = 'root'
     DB_PASSWORD = 'root'
-    DB_DATABASE_NAME = 'user_dashboard'
+    DB_DATABASE_NAME = 'mydb'
     DB_HOST = 'hello'
 
 """ Put Production Specific Configurations here """
 class ProductionDBConfig(DBConfig):
     DB_USERNAME = 'root'
     DB_PASSWORD = 'root'
-    DB_DATABASE_NAME = 'user_dashboard'
+    DB_DATABASE_NAME = 'mydb'
     DB_HOST = 'hello'
 
 
