@@ -3,7 +3,6 @@ from system.core.model import Model
 class user(Model):
 	def __init__(self):
 		super(user, self).__init__()
-
 	def create_tutor(self, info):
 		pw_hash = self.bcrypt_generate_password_hash(info['password'])
 		create_tutor_query = "INSERT INTO users (first_name, last_name, email, password, created_at, updated_at) VALUES ('{}', '{}','{}','{}',NOW(),NOW())".format(info['first_name'], info['last_name'], info['email'], pw_hash)
@@ -44,4 +43,3 @@ class user(Model):
 		# query =
 		# self.db.query_db(query)
 		pass
-
