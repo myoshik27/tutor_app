@@ -1,7 +1,4 @@
 from system.core.model import Model
-from flask import request, Flask, session
-import re
-from flask.ext.bcrypt import Bcrypt
 
 class user(Model):
 	def __init__(self):
