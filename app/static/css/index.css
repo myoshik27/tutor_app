@@ -1,0 +1,13 @@
+
+body{
+	padding-top: 0 px;
+
+}
+.wrapper{
+	width: 800px;
+	margin: 0px auto;
+}
+
+.form-horizontal .control-label{
+	text-align:left;
+}
