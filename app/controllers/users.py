@@ -1,7 +1,4 @@
 from system.core.controller import*
-from flask import request, Flask, session, Markup
-import re
-from flask.ext.bcrypt import Bcrypt
 
 class users(Controller):
 	def __init__(self,action):
@@ -10,11 +7,15 @@ class users(Controller):
 	
 	def index(self):
 		print "Path Index"
+<<<<<<< HEAD
 		return self.load_view('users/index.html')
 	def tutor_login(self):
 		return self.load_view('users/tutor_login.html')
 	def student_login(self):
 		return self.load_view('users/student_login.html')
+=======
+		return self.load_view('index.html')
+>>>>>>> 6eb35a7e4d643d7565050c96566e8bc1f36f5495
 
 	def tutor_create(self):
 		tutor_info = request.form
