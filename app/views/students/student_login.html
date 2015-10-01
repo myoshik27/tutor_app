@@ -3,20 +3,19 @@
     <head>
         <meta charset="utf-8">
         <title></title>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/index.css')}}">
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" type="text/css" href={{url_for('static', filename='css/styles.css')}}>
+  <title>Main Page</title>
+    <meta name='viewport' content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+    <script src="{{url_for('static', filename='js/jquery-1.11.3.js')}}"></script>
+    <script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
     </head>
     <body>
+    <div class='container'>
         <h1>Student</h1>
         <h4>Register</h4>
         <div class="wrapper">
-            <form action="/student_create" method="POST">
+            <form action="/students/create" method="POST">
                 <div class="form-group">
                     <label for="first_name">First Name</label>
                     <input type="first_name" class="form-control" id="first_name" placeholder="First Name" name="first_name">
@@ -38,17 +37,18 @@
                     <input type="confirm_password" class="form-control" id="confirm_password" placeholder="Confirm Password" name="confirm_password">
                 </div>
                 <div class="form-group text-right">
-                <input type="submit" class="btn btn-default" value="Submit"></input>
+                <input type="submit" class="btn btn-default" value="Submit">
                 </div>
             </form>
             <h1>Login</h1>
-            <form action="/student/login" method="post">
+            <form action="/students/login" method="post">
                 <label for="login_email">Email:</label>
-                <input type="text" name="login_email">
+                <input type="text" name="login_email" value='sungjk@msn.com'>
                 <label for="login_password">Password:</label>
-                <input type="password" name="login_password">
+                <input type="password" name="login_password" value='dkdkdkdkdk'>
              <input type="submit" value="Login">
             </form>
         </div>
+    </div><!-- end of container -->
     </body>
 </html>

@@ -1,7 +1,7 @@
 <DOCTYPE! html>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href={{url_for('static', filename='css/styles.css')}}>
+	  <link rel="stylesheet" type="text/css" href={{url_for('static', filename='css/styles.css')}}>
   <title>Main Page</title>
 	<meta name='viewport' content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
@@ -10,10 +10,9 @@
 </head>
 <body>
 <div class="container">
-	<h1> WELCOME! </h1>
-	<h2>You are logged in as {{session}}</h2>
+    <h1> WELCOME! </h1>
     <button name="tutor"><a href="/tutors/loginPage">Tutors</a></button>
     <button name="students"><a href="/students/loginPage">Students</a></button>
-</div>
+</div><!-- end of container-->
 </body>
 </html>
