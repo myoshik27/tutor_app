@@ -29,7 +29,7 @@ class tutors(Controller):
 		if tutor['status'] == True:
 			return redirect('/tutors/home/'+str(tutor['tutor_info']['id']))
 		else:
-			return redirect('/tutor_login')
+			return redirect('/tutors/loginPage')
 	def home(self,id):
 		user_info=self.models['user'].fetch_user_info_id(id)
 		session['id']=user_info['id']

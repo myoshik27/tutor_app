@@ -8,10 +8,10 @@ class student(Model):
 		self.db.query_db(create_student_query)
 		return True
 	def login(self,info):
-		student_info_query = "SELECT * FROM students left join on users.id=students.user_id WHERE email = '{}'".format(info['email'])
+		student_info_query = "select * FROM students left join users on users.id=students.user_id WHERE email='{}'".format(info['email'])
 		student_info = self.db.query_db(student_info_query)
-		if student_info[0]:
+		print student_info
+		if student_info:
 			if self.bcrypt.check_password_hash(student_info[0]['password'], info['password']):
 				return {'status':True, 'student_info':student_info[0]}
-			else:
-				return {'status':False}
+		return {'status':False}

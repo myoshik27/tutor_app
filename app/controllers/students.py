@@ -26,7 +26,7 @@ class students(Controller):
 		if student['status'] == True:
 			return redirect('/students/home/'+str(student['student_info']['id']))
 		else:
-			return redirect('/student_login')
+			return redirect('/students/loginPage')
 	def home(self,id):
 		user_info=self.models['user'].fetch_user_info_id(id)
 		session['id']=user_info['id']
