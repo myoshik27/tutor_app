@@ -1,0 +1,29 @@
+* {
+  font-family: monaco;
+}
+textarea{
+	width:250px;
+	height: 250px;
+	overflow: scroll;
+	display: inline-block;
+}
+#note button, #note form{
+	display: inline-block;
+	vertical-align: top;
+}
+#note, h3{
+	padding-bottom: 20px;
+	border-bottom: lightgray solid 1px;
+}
+#container{
+	width:400px;
+}
+#addNote input{
+	display:block;
+	width:250px;
+	margin:5px;
+}
+#addNote button{
+	margin:5px;
+	display:block;
+}
