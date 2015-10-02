@@ -47,8 +47,7 @@ class user(Model):
 		print location_update_query
 		self.db.query_db(location_update_query)
 	def get_all_loc(self):
-		fetch= "select * from locations"
-		print fetch
+		fetch= "select * from locations JOIN users ON users.id = locations.users_id JOIN tutors ON users.id = tutors.user_id"
 		return self.db.query_db(fetch)
 	def update(self):
 		# query =
