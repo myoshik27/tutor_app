@@ -5,6 +5,9 @@ class students(Controller):
 		self.load_model('user')
 		self.load_model('student')
 	def loginPage(self):
+		if session:
+			if session['status'] == "student":
+				return redirect('/students/home/{}'.format(session['id']))
 		return self.load_view('students/student_login.html')
 
 	def create(self):
@@ -39,4 +42,5 @@ class students(Controller):
 		user_info=self.models['user'].fetch_user_info_id(id)
 		session['id']=user_info['id']
 		session['firstName']=user_info['firstName']
+		session['status']="student"
 		return self.load_view('/students/student_home.html')
