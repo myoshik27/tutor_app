@@ -9,6 +9,38 @@
     <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
     <script src="{{url_for('static', filename='js/jquery-1.11.3.js')}}"></script>
     <script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+        <script>
+function initialize() {
+    var LatLng = {lat:47.609786, lng:-122.1966154};
+  
+    var mapProp = {
+    center:new google.maps.LatLng(47.609786,-122.1966154),
+    zoom:15,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+    };
+
+    var map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+    var marker = new google.maps.Marker({
+    position: LatLng,
+    map: map,
+    title: 'Hello tutors'
+    });
+
+    var content = '<h4>Tutor:MATH</h4>';
+    var infowindow = new google.maps.InfoWindow({
+        content: content
+    });
+
+    marker.addListener('click', function() {
+        infowindow.open(map, marker);
+    })
+
+
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
     </head>
     <body>
     <div class='container'>

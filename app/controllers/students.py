@@ -39,7 +39,6 @@ class students(Controller):
 		return redirect('/students/loginPage')
 	def home(self,id):
 		user_info=self.models['user'].fetch_user_info_id(id)
-
 		session['id']=user_info['id']
 		session['firstName']=user_info['firstName']
 		print "dfsdfsfdsfdfsdfdsfdfds49850349543850943905409f"*80
