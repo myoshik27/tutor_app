@@ -44,4 +44,6 @@ class tutors(Controller):
 		session['status']="tutor"
 		return self.load_view('/tutors/tutor_home.html')
 	def profile(self,id):
+		student=self.models['user'].fetch_user_info_id(id)
+		return self.load_view('/tutors/tutor_profile.html', student=student)
 		return self.load_view('/tutors/tutor_profile.html')
