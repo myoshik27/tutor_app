@@ -9,12 +9,20 @@
 	<script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
 	    <script src="{{url_for('static',filename='js/locations.js')}}"></script>
 </head>
-<body>
-<div class="container">
-	<div id='header'>
-		<a href='/users/logout'>Logout</a>
-	</div>
-    <h1> WELCOME!{{session['firstName']}} </h1>
-</div><!-- end of container-->
-</body>
+	<body>
+		<div class="container">
+			<div id='header'>
+				<a href='/users/logout'>Logout</a>
+				<a class="col-md-offset-8" href="#">My Profile</a>
+				<a class="col-md-offset-1" href="#">Sign in as a Student</a>
+			</div>
+		    <h1> WELCOME! {{session['firstName']}} </h1>
+		    <divn class="row">
+			    <div id="map" class="col-md-6">		
+			    </div>
+			    <div id="Form" class="col-md-6">
+			    </div>
+		    </div>
+		</div><!-- end of container-->
+	</body>
 </html>
