@@ -1,6 +1,8 @@
 $(document).ready(function(){
   console.log("hello")
-    function getLocation(){
+    getLocation();
+  });
+function getLocation(){
       console.log("funciont works")
       if (navigator.geolocation){
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -11,4 +13,3 @@ $(document).ready(function(){
       console.log(position.coords.latitude)
     }
     }
-  });
