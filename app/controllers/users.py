@@ -13,6 +13,12 @@ class users(Controller):
 	def logout(self):
 		session.clear()
 		return redirect('/')
-	def location(self,location):
-		print "dfsfsddsf"
+	def location(self):
+		location={
+		'latitude':request.form['latitude'],
+		'longitude':request.form['longitude'],
+		'id':session['id']
+		}
+		self.models['user'].locations(location)
 		print location
+		return "Response server"

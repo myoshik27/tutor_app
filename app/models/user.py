@@ -6,9 +6,7 @@ class user(Model):
 		super(user, self).__init__()
 	def fetch_user_info_id(self,id):
 		fetch_user_info_id_query="select * from users where id={}".format(id)
-		print 'model '*80
 		user_info=self.db.query_db(fetch_user_info_id_query)
-		print user_info
 		return user_info[0]
 	def fetch_last_user(self):
 		fetch_last_query="select * from users order by id desc limit 1"
@@ -37,6 +35,17 @@ class user(Model):
 		if errors:
 			return{"status":False, 'errors':errors}
 		return {"status":True}
+	def locations(self,location):
+		fetch="select * from locations where users_id={}".format(location['id'])
+		fetch =self.db.query_db(fetch)
+		if not fetch:
+			init_location_query="insert into locations (longtitude,latitude,created_at, updated_at, users_id) values ('{}','{}',now(),now(),'{}')".format(location['longitude'],location['latitude'],location['id'])
+			print init_location_query
+			self.db.query_db(init_location_query)
+			return "success"
+		location_update_query="update locations set longtitude={}, latitude={}, updated_at=now() where users_id={}".format(location['longitude'],location['latitude'],location['id'])
+		print location_update_query
+		self.db.query_db(location_update_query)
 	def update(self):
 		# query =
 		# self.db.query_db(query)

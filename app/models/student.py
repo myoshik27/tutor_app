@@ -11,10 +11,8 @@ class student(Model):
 		errors=[]
 		student_info_query = "select * FROM students left join users on users.id=students.user_id WHERE email='{}'".format(info['email'])
 		student_info = self.db.query_db(student_info_query)
-		print student_info
 		if student_info:
 			if self.bcrypt.check_password_hash(student_info[0]['password'], info['password']):
 				return {'status':True, 'student_info':student_info[0]}
 		errors.append("Infromation you put in does not match our database")
-		print "login MODEL "*80
 		return {'status':False, 'errors':errors}
