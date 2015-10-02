@@ -16,6 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `locations`
+--
+
+DROP TABLE IF EXISTS `locations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `locations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `latitude` varchar(255) DEFAULT NULL,
+  `longtitude` varchar(255) DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `users_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_locations_users1_idx` (`users_id`),
+  CONSTRAINT `fk_locations_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `locations`
+--
+
+LOCK TABLES `locations` WRITE;
+/*!40000 ALTER TABLE `locations` DISABLE KEYS */;
+/*!40000 ALTER TABLE `locations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `student_reviews`
 --
 
@@ -28,9 +56,12 @@ CREATE TABLE `student_reviews` (
   `updated_at` varchar(255) DEFAULT NULL,
   `content` varchar(255) DEFAULT NULL,
   `student_id` int(11) NOT NULL,
+  `tutors_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_student_reviews_students1_idx` (`student_id`),
-  CONSTRAINT `fk_student_reviews_students1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_student_reviews_tutors1_idx` (`tutors_id`),
+  CONSTRAINT `fk_student_reviews_students1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_student_reviews_tutors1` FOREIGN KEY (`tutors_id`) REFERENCES `tutors` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -58,7 +89,7 @@ CREATE TABLE `students` (
   PRIMARY KEY (`id`),
   KEY `fk_students_users1_idx` (`user_id`),
   CONSTRAINT `fk_students_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,6 +98,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
+INSERT INTO `students` VALUES (1,'2015-10-01 16:14:06','2015-10-01 16:14:06',3),(2,'2015-10-01 17:08:48','2015-10-01 17:08:48',4);
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -228,14 +260,11 @@ CREATE TABLE `tutors` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
   `updated_at` varchar(255) DEFAULT NULL,
-  `student_review_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_tutors_student_reviews1_idx` (`student_review_id`),
   KEY `fk_tutors_users1_idx` (`user_id`),
-  CONSTRAINT `fk_tutors_student_reviews1` FOREIGN KEY (`student_review_id`) REFERENCES `student_reviews` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_tutors_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -244,6 +273,7 @@ CREATE TABLE `tutors` (
 
 LOCK TABLES `tutors` WRITE;
 /*!40000 ALTER TABLE `tutors` DISABLE KEYS */;
+INSERT INTO `tutors` VALUES (1,'2015-10-01 15:09:37','2015-10-01 15:09:37',1),(2,'2015-10-01 16:01:45','2015-10-01 16:01:45',2);
 /*!40000 ALTER TABLE `tutors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -265,7 +295,7 @@ CREATE TABLE `users` (
   `longitude` varchar(255) DEFAULT NULL,
   `latitude` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -274,6 +304,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'sung','kang','$2a$12$7PaOftvUJwIBbwHixl2VyeKsHEkvZUBMJ6aBdoQEokQl.BOnntZha','sungjk@msn.com','2015-10-01 15:09:37','2015-10-01 15:09:37',NULL,NULL),(2,'you','kang','$2a$12$ZCsLUJs0u0fTGwgwQV4WCuqsvPiQfSCisZ70PCsXiOCrMUK3GGRuK','youngjun@msn.com','2015-10-01 16:01:45','2015-10-01 16:01:45',NULL,NULL),(3,'sung','kang','$2a$12$UINjtaxnZW/wlAM/ni/Z9uM19NnNv1qMKKzqIn0Bhp5PlvlmmD30u','sungjk@msn.com','2015-10-01 16:14:06','2015-10-01 16:14:06',NULL,NULL),(4,'sung','kang','$2a$12$fp5N9Y48K5pHcO98CPN6MOScnLYf8OrKMd1zePKqojLCt32k.5yry','sungjkk@msn.com','2015-10-01 17:08:48','2015-10-01 17:08:48',NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -286,4 +317,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-10-01 11:45:34
+-- Dump completed on 2015-10-01 17:33:06
