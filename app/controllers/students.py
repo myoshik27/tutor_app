@@ -49,4 +49,8 @@ class students(Controller):
 		student=self.models['user'].fetch_user_info_id(id)
 		return self.load_view('/students/student_profile.html', student=student)
 	def request(self, id):
+
+		tutor_id = id
+		tutor_info = self.models['user'].fetch_tutor_info(tutor_id)
 		return self.load_view('/students/tutor_request.html')
+
