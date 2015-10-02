@@ -1,19 +1,44 @@
 <DOCTYPE! html>
 <html>
 <head>
+          <link rel="stylesheet" type="text/css" href={{url_for('static', filename='css/student.css')}}>
+  <title>Main Page</title>
+    <meta name='viewport' content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+    <script src="{{url_for('static', filename='js/jquery-1.11.3.js')}}"></script>
+    <script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
 </head>
 <body>
+    <div class="container">
     <h1>Request Tutor</h1>
-    <div id="pictue"></div>
-    <p>Price:</p>
-    <p>Location want to study:</p>
-    <form action="/"
-    <select name="subjects">
-        <option value="math">Math</option>
-        <option value="science">Science</option>
-        <option value="english">English</option>
-        <option value="business">Business</option>
-    </select>
-
+    <div id="pictue">PICTURE HERE</div>
+    <form action="/student/send+request" method="post">
+        <label for="price">Price Offered</label>
+        <input type="text" name="price"></input>
+        <label for="location">Location to meet</label>
+        <input type="text" name="location"></input>
+        <label for="subjects">Subject:</label>
+        <select name="subjects">
+            <option value="math">Math</option>
+            <option value="science">Science</option>
+            <option value="english">English</option>
+            <option value="business">Business</option>
+        </select>
+        <label for="message">Request Message:</label>
+        <input type="text" name="message"></input>
+        <label for="subject">Detailed subject you are</label>
+        <input type="text" name="details"></input>
+        <input type="submit" value="Request Tutor">
+    </form>
+</div>
     </body>
     </html>
+
+    <style>
+    input {
+        display: block
+    }
+    label {
+        display: block;
+    }
+    </style>
