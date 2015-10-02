@@ -5,9 +5,6 @@ class students(Controller):
 		self.load_model('user')
 		self.load_model('student')
 	def loginPage(self):
-		# if session:
-		# 	if session['id']:
-		# 		return redirect('students/student_home.html')
 		return self.load_view('students/student_login.html')
 
 	def create(self):
@@ -17,12 +14,12 @@ class students(Controller):
 		'email':request.form['email'],
 		'password':request.form['password']
 		}
-		validation=self.models['user'].validation(student_info)
+		validation=self.models['user'].validation(student_info,"students")
 		if validation['status'] == False:
 			for error in validation['errors']:
 				flash(error)
 			return redirect('/students/loginPage')
-		last_added = self.models['user'].create_user(student_info,students)
+		last_added = self.models['user'].create_user(student_info)
 		self.models['student'].create(last_added)
 		return redirect('/students/home/{}'.format(last_added['id']))
 	def login(self):

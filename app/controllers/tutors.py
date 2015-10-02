@@ -17,7 +17,7 @@ class tutors(Controller):
 		'email':request.form['email'],
 		'password':request.form['password']
 		}
-		validation=self.models['user'].validation(tutor_info,tutors)
+		validation=self.models['user'].validation(tutor_info,"tutors")
 		if validation['status'] == False:
 			for error in validation['errors']:
 				flash(error)
