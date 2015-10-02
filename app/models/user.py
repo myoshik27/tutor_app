@@ -1,5 +1,6 @@
 from system.core.model import Model
-
+import re
+EMAIL_REGEX = re.compile(r'^[a-za-z0-9\.\+_-]+@[a-za-z0-9\._-]+\.[a-za-z]*$')
 class user(Model):
 	def __init__(self):
 		super(user, self).__init__()
@@ -15,7 +16,24 @@ class user(Model):
 		create_user_query = "INSERT INTO users (firstName, lastName, email, password, created_at, updated_at) VALUES ('{}', '{}','{}','{}',NOW(),NOW())".format(info['firstName'], info['lastName'], info['email'], pw_hash)
 		self.db.query_db(create_user_query)
 		return self.fetch_last_user()
-
+	def validation(self,user,status):
+		errors=[]
+		query_fetch="select * from {} left join users on users.id={}.user_id where email= '{}' limit 1".format(status,status,user['email'])
+		if self.db.query_db(query_fetch):
+			errors.append("Your Email already exist")
+		if len(user['firstName']) < 2 :
+			errors.append("Your first name should be longer than 2 characters")
+		if len(user['lastName']) < 2 :
+			errors.append("Your last name should be longer than 2 characters")
+		if len(user['password']) < 8 :
+			errors.append("Your password should be longer than 8 characters")
+		if len(user['email']) < 2 :
+			errors.append("Your email should be longer than 2 characters")
+		if not EMAIL_REGEX.match(user['email']):
+			errors.append("The email you entered {} is not a valid email address!".format(user['email']))
+		if errors:
+			return{"status":False, 'errors':errors}
+		return {"status":True}
 	def update(self):
 		# query =
 		# self.db.query_db(query)

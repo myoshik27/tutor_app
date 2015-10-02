@@ -12,6 +12,13 @@
     </head>
     <body>
     <div class='container'>
+             {% with messages= get_flashed_messages()%}
+              {% if messages %}
+                {% for message in messages %}
+                <p class='text-danger'>{{message}}</p>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
         <h1>Student</h1>
         <h4>Register</h4>
         <div class="wrapper">

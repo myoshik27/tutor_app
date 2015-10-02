@@ -9,13 +9,15 @@ class tutor(Model):
 		self.db.query_db(create_tutor_query)
 		return True
 	def login(self, info):
+		errors=[]
 		tutor_info_query = "SELECT * FROM tutors left join users on users.id=tutors.user_id WHERE email = '{}'".format(info['email'])
 		tutor_info = self.db.query_db(tutor_info_query)
 		if tutor_info:
 			if self.bcrypt.check_password_hash(tutor_info[0]['password'], info['password']):
 				print tutor_info[0]
 				return {'status':True , 'tutor_info':tutor_info[0]}
-		return {'status':False}
+		errors.append("Your information does not match our record")
+		return {'status':False, 'errors':errors}
 	def update(self):
 		# query =
 		# self.db.query_db(query)

@@ -17,6 +17,11 @@ class tutors(Controller):
 		'email':request.form['email'],
 		'password':request.form['password']
 		}
+		validation=self.models['user'].validation(tutor_info,tutors)
+		if validation['status'] == False:
+			for error in validation['errors']:
+				flash(error)
+			return redirect('/tutors/loginPage')
 		last_added = self.models['user'].create_user(tutor_info)
 		self.models['tutor'].create(last_added)
 		return redirect('/tutors/home/{}'.format(last_added['id']))
@@ -28,8 +33,9 @@ class tutors(Controller):
 		tutor = self.models['tutor'].login(tutor_info)
 		if tutor['status'] == True:
 			return redirect('/tutors/home/'+str(tutor['tutor_info']['id']))
-		else:
-			return redirect('/tutors/loginPage')
+		for error in tutor['errors']:
+			flash(error)
+		return redirect('/tutors/loginPage')
 	def home(self,id):
 		user_info=self.models['user'].fetch_user_info_id(id)
 		session['id']=user_info['id']

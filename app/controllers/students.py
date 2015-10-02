@@ -14,7 +14,12 @@ class students(Controller):
 		'email':request.form['email'],
 		'password':request.form['password']
 		}
-		last_added = self.models['user'].create_user(student_info)
+		validation=self.models['user'].validation(student_info)
+		if validation['status'] == False:
+			for error in validation['errors']:
+				flash(error)
+			return redirect('/students/loginPage')
+		last_added = self.models['user'].create_user(student_info,students)
 		self.models['student'].create(last_added)
 		return redirect('/students/home/{}'.format(last_added['id']))
 	def login(self):
@@ -25,8 +30,9 @@ class students(Controller):
 		student = self.models['student'].login(student_info)
 		if student['status'] == True:
 			return redirect('/students/home/'+str(student['student_info']['id']))
-		else:
-			return redirect('/students/loginPage')
+		for error in student['errors']:
+			flash(error)
+		return redirect('/students/loginPage')
 	def home(self,id):
 		user_info=self.models['user'].fetch_user_info_id(id)
 		session['id']=user_info['id']
