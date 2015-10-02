@@ -43,3 +43,5 @@ class tutors(Controller):
 		session['firstName']=user_info['firstName']
 		session['status']="tutor"
 		return self.load_view('/tutors/tutor_home.html')
+	def profile(self,id):
+		return self.load_view('/tutors/tutor_profile.html')
