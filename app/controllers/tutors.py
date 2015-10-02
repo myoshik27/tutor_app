@@ -7,7 +7,7 @@ class tutors(Controller):
 		self.load_model('user')
 	def loginPage(self):
 		# if session:
-		# 	if session['tutor_id']:
+		# 	if session['id']:
 		# 		return redirect('tutors/tutor_home.html')
 		return self.load_view('tutors/tutor_login.html')
 	def create(self):
