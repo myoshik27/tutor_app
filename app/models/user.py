@@ -48,6 +48,7 @@ class user(Model):
 		self.db.query_db(location_update_query)
 	def get_all_loc(self):
 		fetch= "select * from locations"
+		print fetch
 		return self.db.query_db(fetch)
 	def update(self):
 		# query =
