@@ -24,15 +24,15 @@ DROP TABLE IF EXISTS `locations`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `locations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `latitude` varchar(255) DEFAULT NULL,
-  `longtitude` varchar(255) DEFAULT NULL,
+  `latitude` float(15,11) DEFAULT NULL,
+  `longtitude` float(15,11) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `users_id` int(11) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_locations_users1_idx` (`users_id`),
   CONSTRAINT `fk_locations_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `locations` (
 
 LOCK TABLES `locations` WRITE;
 /*!40000 ALTER TABLE `locations` DISABLE KEYS */;
+INSERT INTO `locations` VALUES (1,47.84999847412,-122.23956298828,'2015-10-01 22:19:15',5,NULL),(2,47.84999847412,-122.23956298828,'2015-10-01 22:19:15',5,NULL),(3,47.60970687866,-122.19633483887,'2015-10-02 08:52:51',1,'2015-10-01 22:22:44'),(4,47.84999847412,-122.23958587646,'2015-10-01 23:03:52',7,'2015-10-01 23:03:52'),(5,47.60971069336,-122.19627380371,'2015-10-02 08:49:40',2,'2015-10-02 07:14:28');
 /*!40000 ALTER TABLE `locations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,7 +91,7 @@ CREATE TABLE `students` (
   PRIMARY KEY (`id`),
   KEY `fk_students_users1_idx` (`user_id`),
   CONSTRAINT `fk_students_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,6 +100,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
+INSERT INTO `students` VALUES (1,'2015-10-01 19:01:33','2015-10-01 19:01:33',1),(2,'2015-10-01 19:08:22','2015-10-01 19:08:22',3),(3,'2015-10-01 20:41:52','2015-10-01 20:41:52',4),(4,'2015-10-01 22:17:18','2015-10-01 22:17:18',5),(5,'2015-10-01 23:03:48','2015-10-01 23:03:48',7);
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -264,7 +266,7 @@ CREATE TABLE `tutors` (
   PRIMARY KEY (`id`),
   KEY `fk_tutors_users1_idx` (`user_id`),
   CONSTRAINT `fk_tutors_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -273,6 +275,7 @@ CREATE TABLE `tutors` (
 
 LOCK TABLES `tutors` WRITE;
 /*!40000 ALTER TABLE `tutors` DISABLE KEYS */;
+INSERT INTO `tutors` VALUES (1,'2015-10-01 19:02:31','2015-10-01 19:02:31',2),(2,'2015-10-01 23:02:01','2015-10-01 23:02:01',6),(3,'2015-10-01 23:41:36','2015-10-01 23:41:36',8);
 /*!40000 ALTER TABLE `tutors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -292,7 +295,7 @@ CREATE TABLE `users` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -301,6 +304,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'sung','kang','$2a$12$HEX/Br0ChRF6hSM1WgP35uGefTa1cdE74OEl1j92dRt7g.l9TRZHG','sungjk@msn.com','2015-10-01 19:01:33','2015-10-01 19:01:33'),(2,'sung','kang','$2a$12$KFGuNhJIlfzwHQCt/UIymOshPc/dfjPR5XHPSBQpEOKqFtPUpVqbq','sungjk@msn.com','2015-10-01 19:02:31','2015-10-01 19:02:31'),(3,'sdfjidsfdiokf','eswhnfikudskfdnsf','$2a$12$vXbDejmfjuLfouQOOcy/vuN2qgcGtcsZy67eiiW4w8Ev07.YyiSE6','sygdsgu@fgsd.con','2015-10-01 19:08:22','2015-10-01 19:08:22'),(4,'sdfdsfds','sdfdsfdsfds','$2a$12$ByYKHDxMT6dtheN765KAr.slbrWR5rNeDwR4qDkk77TJlkpko2zH6','dfdsfdfdf@fonf.com','2015-10-01 20:41:52','2015-10-01 20:41:52'),(5,'young','kang','$2a$12$cs4V/BrIxM/dcnj2fCkXB.xs2YT3YwuU07vOn4i0zCMk8p/Mp5Ree','youngjun@msn.com','2015-10-01 22:17:18','2015-10-01 22:17:18'),(6,'dfsdfdf','dsfdsfdsf','$2a$12$eFmn2pdnKNMkSrGeU0rYV.0hHKDKgU/JUOlVqTjtlZjbYnpfseRfS','dfdsfdsfs@fsdf.com','2015-10-01 23:02:01','2015-10-01 23:02:01'),(7,'sdfjksldfd','fsdjflksdjfkd','$2a$12$M18Lj4cyAe5zPhayl3nUM.LuYq68CvEOvyYpXORtrm6tBXZxR85w2','sdfjdsioufd@fsfsdf.com','2015-10-01 23:03:48','2015-10-01 23:03:48'),(8,'sudfjsdkf','sdfjkdslfjdsklf','$2a$12$IM717cLpGyyog3lzdMiFcu01VpJ63xVnQbJ6/I1P8LR5y6Y6rynXC','sdfjsldkjfkdl@fsdf.com','2015-10-01 23:41:36','2015-10-01 23:41:36');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -313,4 +317,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-10-01 18:04:48
+-- Dump completed on 2015-10-02 11:11:17
