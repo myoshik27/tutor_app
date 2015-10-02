@@ -11,6 +11,7 @@ routes['default_controller'] = 'users'
 # routes['/tutor/home/<id>'] = 'users#tutor_home'
 # routes['/student/home/<id>'] = 'users#student_home'
 routes['POST']['/users/location'] = 'users#location'
+routes['/student/request/<id>'] = 'students#request'
 
 """
 	routes['GET']['/users'] = 'users#index'
