@@ -7,8 +7,9 @@ class tutors(Controller):
 		self.load_model('user')
 	def loginPage(self):
 		if session:
-			if session['status'] == "tutor":
-				return redirect('/tutors/home/{}'.format(session['id']))
+			if 'status' in session:
+				if session['status'] == "tutor":
+					return redirect('/tutors/home/{}'.format(session['id']))
 		return self.load_view('tutors/tutor_login.html')
 	def create(self):
 		tutor_info = {

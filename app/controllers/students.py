@@ -5,11 +5,13 @@ class students(Controller):
 		self.load_model('user')
 		self.load_model('student')
 	def loginPage(self):
+		print "dfsfsdfdf"*80
 		if session:
-			if session['status'] == "student":
-				return redirect('/students/home/{}'.format(session['id']))
+			if 'status' in session:
+				if session['status']:
+					if session['status'] == "student":
+						return redirect('/students/home/{}'.format(session['id']))
 		return self.load_view('students/student_login.html')
-
 	def create(self):
 		student_info = {
 		'firstName':request.form['first_name'],
