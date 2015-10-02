@@ -1,13 +1,20 @@
 <DOCTYPE! html>
 <html>
 <head>
-	  <link rel="stylesheet" type="text/css" href={{url_for('static', filename='css/tutor.css')}}>
-  <title>Main Page</title>
+		<link rel="stylesheet" type="text/css" href={{url_for('static', filename='css/tutor.css')}}>
+	<title>Main Page</title>
 	<meta name='viewport' content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
 	<script src="{{url_for('static', filename='js/jquery-1.11.3.js')}}"></script>
 	<script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
-	    <script src="{{url_for('static',filename='js/locations.js')}}"></script>
+	<script src="{{url_for('static',filename='js/locations.js')}}"></script>
+	<link href="bootstrap.css" rel="stylesheet">
+	<link href="bootstrap-switch.css" rel="stylesheet">
+	<script src="jquery.js"></script>
+	<script src="bootstrap-switch.js"></script>
+	<script type="text/javascript">
+		$("[name='my-checkbox']").bootstrapSwitch();
+	</script>
 </head>
 	<body>
 		<div class="container">
@@ -16,13 +23,41 @@
 				<a class="col-md-offset-8" href="#">My Profile</a>
 				<a class="col-md-offset-1" href="#">Sign in as a Student</a>
 			</div>
-		    <h1> WELCOME! {{session['firstName']}} </h1>
-		    <divn class="row">
-			    <div id="map" class="col-md-6">		
-			    </div>
-			    <div id="Form" class="col-md-6">
-			    </div>
-		    </div>
+			<h1> WELCOME! {{session['firstName']}} </h1>
+			<div class="row">
+				<div id="map" class="col-md-6">		
+				</div>
+				<div id="form" class="col-md-6">
+					<div class="row">
+						<h1>Availability: </h1>
+						<input type="checkbox" name="my-checkbox" checked>
+					</div>					
+					<form>
+						<div class="row">
+							<div class="col-md-6">
+								<select class="form-control">
+									<option>Hour</option>
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+									<option>5</option>
+								</select>
+							</div>
+							<div class="col-md-6">
+								<select class="form-control">
+									<option>Minutes</option>
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+									<option>5</option>
+								</select>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div><!-- end of container-->
 	</body>
 </html>
