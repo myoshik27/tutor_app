@@ -9,9 +9,11 @@
     <script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
 </head>
 <body>
+    <a href="/students/profile/{{session['id']}}">My Profile</a>
     <div class="container">
-    <h1>Request Tutor</h1>
-    <div id="pictue">PICTURE HERE</div>
+    <h1>Request {{tutor_info['first_name']}}</h1>
+    <div id="pictue"><img src=
+        {{"http://pokeapi.co/media/img/{}.png".format(id)}}></div>
     <form action="/student/send+request" method="post">
         <label for="price">Price Offered</label>
         <input type="text" name="price"></input>

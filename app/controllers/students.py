@@ -49,7 +49,7 @@ class students(Controller):
 		return self.load_view('/students/student_profile.html')
 	def request(self, id):
 
-		tutor_id = id
-		tutor_info = self.models['user'].fetch_tutor_info(tutor_id)
-		return self.load_view('/students/tutor_request.html')
+		user_id = id
+		tutor_info = self.models['user'].fetch_tutor_info(user_id)
+		return self.load_view('/students/tutor_request.html', tutor_info=tutor_info, id=id)
 

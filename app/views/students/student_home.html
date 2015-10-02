@@ -43,7 +43,7 @@
 
     	google.maps.event.addListener(marker, 'click', (function(marker, j) {
     			return function() {
-    			infowindow.setContent("<p>"+locations[j]['firstName']+"\'s Location</p>"+"<a href='/student/request/"+locations[j]['id']+"'>Request Tutor</a>");
+    			infowindow.setContent("<p>"+locations[j]['firstName']+"\'s Location</p>"+"<a href='/student/request/"+locations[j]['user_id']+"'>Request Tutor</a>");
     			infowindow.open(map, marker);
     		}
     	})(marker, j));
