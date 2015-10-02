@@ -46,6 +46,9 @@ class user(Model):
 		location_update_query="update locations set longtitude={}, latitude={}, updated_at=now() where users_id={}".format(location['longitude'],location['latitude'],location['id'])
 		print location_update_query
 		self.db.query_db(location_update_query)
+	def get_all_loc(self):
+		fetch= "select * from locations"
+		return self.db.query_db(fetch)
 	def update(self):
 		# query =
 		# self.db.query_db(query)

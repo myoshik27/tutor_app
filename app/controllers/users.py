@@ -22,3 +22,6 @@ class users(Controller):
 		self.models['user'].locations(location)
 		print location
 		return "Response server"
+	def location_api(self):
+		all_log=self.models['user'].get_all_loc()
+		return jsonify(results=all_log)

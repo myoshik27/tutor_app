@@ -22,7 +22,6 @@ function getLocation(){
       console.log(latitude);
       $.post('/users/location',position,function(res){
         console.log(res)
-        
       } )
       }
     }
