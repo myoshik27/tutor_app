@@ -47,3 +47,5 @@ class students(Controller):
 		return self.load_view('/students/student_home.html')
 	def profile(self,id):
 		return self.load_view('/students/student_profile.html')
+	def request(self, id):
+		return self.load_view('/students/tutor_request.html')

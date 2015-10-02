@@ -10,35 +10,88 @@
 
 	<script src="http://maps.googleapis.com/maps/api/js"> </script>
 	<script>
-function initialize() {
-    var LatLng = {lat:47.609786, lng:-122.1966154};
+	$(document).ready(function(){
+
+
+		$.get('/users/location_api', function(res) {
+		console.log(res);
+		var locations = [];
+		for(var i = 0; i < res['results'].length; i++){
+
+			locations.push(res.results[i]);
+		}
+		console.log(locations[2]['latitude']);
+		    
+		var mapProp = {
+    		center:new google.maps.LatLng(47.609786,-122.1966154),
+    		zoom:10,
+    		mapTypeId:google.maps.MapTypeId.ROADMAP
+  		};
+
+    	var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+    	var infowindow = new google.maps.InfoWindow();
+
+    	var marker, j;
+    	console.log(locations.length);
+    	for(var j =0; j < locations.length; j++){
+    		console.log('locations.length');
+    		marker = new google.maps.Marker({
+   	 		position: new google.maps.LatLng(locations[j]['latitude'], locations[j]['longtitude']),
+    		map: map
+    	});
+
+    	google.maps.event.addListener(marker, 'click', (function(marker, j) {
+    			return function() {
+    			infowindow.setContent("<p>"+locations[j]['firstName']+"\'s Location</p>"+"<a href='/student/request/"+locations[j]['id']+"'>Request Tutor</a>");
+    			infowindow.open(map, marker);
+    		}
+    	})(marker, j));
+
+		}
+	})
+
+})
+// function initialize(locations) {
+
   
-    var mapProp = {
-    center:new google.maps.LatLng(47.609786,-122.1966154),
-    zoom:15,
-    mapTypeId:google.maps.MapTypeId.ROADMAP
-  	};
+//     var mapProp = {
+//     center:new google.maps.LatLng(47.609786,-122.1966154),
+//     zoom:15,
+//     mapTypeId:google.maps.MapTypeId.ROADMAP
+//   	};
 
-    var map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
+//     var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
-    var marker = new google.maps.Marker({
-    position: LatLng,
-    map: map,
-    title: 'Hello tutors'
-    });
+//     var marker, i;
 
-    var content = '<h4>Tutor:MATH</h4>';
-    var infowindow = new google.maps.InfoWindow({
-        content: content
-    });
+//     for(var i =0; i < locations.length; i++){
+//     	var marker = new google.maps.Marker({
+//    	 	position: new google.maps.LatLng(locations[i][3], locations[i][4]),
+//     	map: map
+//     });
 
-    marker.addListener('click', function() {
-        infowindow.open(map, marker);
-    })
+//     google.maps.event.addListener(marker, 'click', (function(marker, i) {
+//     		return function() {
+//     			infowindow.setContent(locations[i][2]);
+//     			infowindow.open(map, marker);
+//     		}
+//     })(marker, i));
+
+// 	}
+
+    // var content = '<h4>Tutor:MATH</h4>';
+    // var infowindow = new google.maps.InfoWindow({
+    //     content: content
+    // });
+
+    // marker.addListener('click', function() {
+    //     infowindow.open(map, marker);
+    // })
 
 
-}
-google.maps.event.addDomListener(window, 'load', initialize);
+// }
+// google.maps.event.addDomListener(window, 'load', initialize);
 
 </script>
     <script src="{{url_for('static',filename='js/locations.js')}}"></script>
