@@ -8,17 +8,21 @@
 	<script src="{{url_for('static', filename='js/jquery-1.11.3.js')}}"></script>
 	<script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
 
-	<script src="http://maps.googleapis.com/maps/api/js"> </script>
 </head>
 <body>
 	<a href="/students/home/{{session['id']}}">Map</a>
 <div class='container'>
 	<div id='header'>
 		<a href='/users/logout'>Logout</a>
+        <a href={{"/students/home/{}".format(session['id'])}}>Home</a>
 	</div>
 	<div id='contents'>
 	    <h1>{{session['firstName']}}'s Profile</h1>
         <div id="profile">
+            <img src={{"http://pokeapi.co/media/img/{}.png".format(session['id'])}}/>
+            <p>Name: {{student['lastName']}},{{student['firstName']}}</p>
+                <p>Member since:{{student['created_at']}}</p>
+                <p>School: </p>
         </div>
 	</div>
 </div><!-- end of container -->

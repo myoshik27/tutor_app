@@ -1,4 +1,4 @@
-<DOCTYPE! html>
+<!DOCTYPE html>
 <html>
 <head>
 	  <link rel="stylesheet" type="text/css" href={{url_for('static', filename='css/tutor.css')}}>
@@ -7,15 +7,23 @@
 	<link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
 	<script src="{{url_for('static', filename='js/jquery-1.11.3.js')}}"></script>
 	<script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
-	    <script src="{{url_for('static',filename='js/locations.js')}}"></script>
+
 </head>
 <body>
-<div class="container">
+<div class='container'>
 	<div id='header'>
 		<a href='/users/logout'>Logout</a>
-        <a href={{'/tutors/profile/{}'.format(session['id'])}}>Profile</a>
+        <a href={{"/tutors/home/{}".format(session['id'])}}>Home</a>
 	</div>
-    <h1> WELCOME!{{session['firstName']}} </h1>
-</div><!-- end of container-->
+	<div id='contents'>
+	    <h1>{{session['firstName']}}'s Profile</h1>
+        <div id="profile">
+            <img src={{"http://pokeapi.co/media/img/{}.png".format(session['id'])}}/>
+            <p>Name: {{student['lastName']}},{{student['firstName']}}</p>
+                <p>Member since:{{student['created_at']}}</p>
+                <p>School: </p>
+        </div>
+	</div>
+</div><!-- end of container -->
 </body>
 </html>
