@@ -47,6 +47,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 <div class='container'>
 	<div id='header'>
 		<a href='/users/logout'>Logout</a>
+        <a href={{'/students/profile/{}'.format(session['id'])}}>Profile</a>
 	</div>
 	<div id='contents'>
 	    <h1> WELCOME! {{session['firstName']}}</h1>
