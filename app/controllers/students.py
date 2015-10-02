@@ -31,7 +31,6 @@ class students(Controller):
 		'email':request.form['login_email'],
 		'password':request.form['login_password']
 		}
-
 		student = self.models['student'].login(student_info)
 		if student['status'] == True:
 			return redirect('/students/home/'+str(student['student_info']['id']))

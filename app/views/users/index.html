@@ -14,8 +14,8 @@
 	{% if session %}
 	<h2>You are logged in as {{session['firstName']}}</h2>
 	{% endif %}
-    <button name="tutor"><a href="/tutors/loginPage">Tutors</a></button>
-    <button name="students"><a href="/students/loginPage">Students</a></button>
+	<a href="/tutors/loginPage"><button name="tutor" class='btn btn-primary'>Tutors</button></a>
+	<a href="/students/loginPage"><button name="students" class='btn btn-success'>Students</button></a>
 </div>
 </body>
 </html>

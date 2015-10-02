@@ -76,9 +76,7 @@ function getLocation(){
 		<a href='/users/logout'>Logout</a>
 	</div>
 	<div id='contents'>
-	    <h1> WELCOME! {{session['first_name']}}{{session['id']}}</h1>
-	    <button name="tutor"><a href="/tutor_login">Tutors</a></button>
-	    <button name="students"><a href="/student_login">Students</a></button>
+	    <h1> WELCOME! {{session['firstName']}}</h1>
 	</div>
 	<div id="googleMap" style="width:500px;height:380px;"></div>
 </div><!-- end of container -->
