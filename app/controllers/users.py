@@ -13,3 +13,6 @@ class users(Controller):
 	def logout(self):
 		session.clear()
 		return redirect('/')
+	def location(self,location):
+		print "dfsfsddsf"
+		print location

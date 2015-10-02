@@ -6,7 +6,10 @@ class user(Model):
 		super(user, self).__init__()
 	def fetch_user_info_id(self,id):
 		fetch_user_info_id_query="select * from users where id={}".format(id)
-		return self.db.query_db(fetch_user_info_id_query)[0]
+		print 'model '*80
+		user_info=self.db.query_db(fetch_user_info_id_query)
+		print user_info
+		return user_info[0]
 	def fetch_last_user(self):
 		fetch_last_query="select * from users order by id desc limit 1"
 		added_last=self.db.query_db(fetch_last_query)[0]

@@ -27,14 +27,20 @@ class students(Controller):
 		'email':request.form['login_email'],
 		'password':request.form['login_password']
 		}
+
 		student = self.models['student'].login(student_info)
+		print "dfsdfsf"*80
 		if student['status'] == True:
+			print "true "*80
 			return redirect('/students/home/'+str(student['student_info']['id']))
 		for error in student['errors']:
 			flash(error)
+		print "dfsdfsf"*80
 		return redirect('/students/loginPage')
 	def home(self,id):
 		user_info=self.models['user'].fetch_user_info_id(id)
+
 		session['id']=user_info['id']
 		session['firstName']=user_info['firstName']
+		print "dfsdfsfdsfdfsdfdsfdfds49850349543850943905409f"*80
 		return self.load_view('/students/student_home.html')

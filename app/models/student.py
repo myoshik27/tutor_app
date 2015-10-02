@@ -16,4 +16,5 @@ class student(Model):
 			if self.bcrypt.check_password_hash(student_info[0]['password'], info['password']):
 				return {'status':True, 'student_info':student_info[0]}
 		errors.append("Infromation you put in does not match our database")
+		print "login MODEL "*80
 		return {'status':False, 'errors':errors}
