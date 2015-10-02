@@ -1,1 +1,20 @@
+*{
+	text-align: center;
+}
 
+#buttons button{
+	margin:20px !important;
+
+}
+.student{
+	background-color: #85BC85;
+}
+.tutor{
+	background-color: #7D9CB8;
+}
+.container{
+	margin:20px;
+	margin-top:200px;
+	background-color: white;
+	height: 900px;
+}

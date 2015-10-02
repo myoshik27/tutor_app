@@ -1,29 +1,32 @@
 <DOCTYPE! html>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href=
-  {% if session %}
-  	{% if (session['status']=='student')%}
-	  {{url_for('static', filename='css/student.css')}}
-	 {% endif %}
-	{{url_for('static', filename='css/tutor.css')}}
-	{% endif %}
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/styles.css')}}">
 
-	>
   <title>Main Page</title>
 	<meta name='viewport' content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
 	<script src="{{url_for('static', filename='js/jquery-1.11.3.js')}}"></script>
 	<script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
 </head>
-<body>
+<body  {% if session %}
+	  	{% if (session['status']=='student')%}
+		  class="student"
+		 {% endif %}
+		 class="tutor"
+	{% else %}
+{% endif %}>
 <div class="container">
 	<h1> WELCOME! </h1>
 	{% if session %}
 	<h2>You are logged in as {{session['firstName']}}</h2>
+	<a href='/users/logout'>
+		<button class='btn btn-danger'>Log out</button></a>
 	{% endif %}
-	<a href="/tutors/loginPage"><button id='tutors' name="tutor" class='btn btn-primary' value="Tutors">Tutors</button></a>
-	<a href="/students/loginPage"><button id='students' name="students" class='btn btn-success' >Students</button></a>
+	<div id="buttons">
+		<a href="/tutors/loginPage"><button id='tutors' name="tutor" class='btn btn-primary' value="Tutors">Tutors</button></a>
+		<a href="/students/loginPage"><button id='students' name="students" class='btn btn-success' >Students</button></a>
+	</div>
 </div>
 </body>
 </html>
