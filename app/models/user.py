@@ -4,10 +4,14 @@ EMAIL_REGEX = re.compile(r'^[a-za-z0-9\.\+_-]+@[a-za-z0-9\._-]+\.[a-za-z]*$')
 class user(Model):
 	def __init__(self):
 		super(user, self).__init__()
-	def fetch_user_info_id(self,id):
-		fetch_user_info_id_query="select * from users where id={}".format(id)
+	def fetch_user_info_id_status(self,id,status):
+		fetch_user_info_id_query="select * from {} left join users on users.id={}.user_id where {}.user_id={}".format(status,status,status,id)
 		user_info=self.db.query_db(fetch_user_info_id_query)
-		return user_info[0]
+		print user_info
+		if user_info:
+			return user_info[0]
+		else:
+			return False
 	def fetch_last_user(self):
 		fetch_last_query="select * from users order by id desc limit 1"
 		added_last=self.db.query_db(fetch_last_query)[0]
@@ -49,9 +53,6 @@ class user(Model):
 	def get_all_loc(self):
 		fetch= "select * from locations JOIN users ON users.id = locations.users_id JOIN tutors ON users.id = tutors.user_id"
 		return self.db.query_db(fetch)
-	def fetch_tutor_info(self, id):
-		fetch="SELECT users.firstName AS first_name FROM users JOIN tutors ON users.id = tutors.user_id WHERE users.id = {}".format(id)
-		return self.db.query_db(fetch)[0]
 	def update(self):
 		# query =
 		# self.db.query_db(query)

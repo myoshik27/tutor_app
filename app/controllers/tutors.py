@@ -33,17 +33,22 @@ class tutors(Controller):
 		}
 		tutor = self.models['tutor'].login(tutor_info)
 		if tutor['status'] == True:
+			session['id']=tutor['tutor_info']['id']
+			session['firstName']=tutor['tutor_info']['firstName']
+			session['status']="tutor"
 			return redirect('/tutors/home/'+str(tutor['tutor_info']['id']))
 		for error in tutor['errors']:
 			flash(error)
 		return redirect('/tutors/loginPage')
 	def home(self,id):
-		user_info=self.models['user'].fetch_user_info_id(id)
-		session['id']=user_info['id']
-		session['firstName']=user_info['firstName']
-		session['status']="tutor"
+		user_info=self.models['user'].fetch_user_info_id_status(id,"tutors")
+		if user_info == False:
+			flash("You are not logged in as tutor")
+			return redirect('/tutors/loginPage')
 		return self.load_view('/tutors/tutor_home.html')
 	def profile(self,id):
-		student=self.models['user'].fetch_user_info_id(id)
-		return self.load_view('/tutors/tutor_profile.html', student=student)
-		return self.load_view('/tutors/tutor_profile.html')
+		tutor=self.models['user'].fetch_user_info_id_status(id,"tutors")
+		if tutor == False:
+			flash("You are not logged in as tutor")
+			return redirect('/tutors/loginPage')
+		return self.load_view('/tutors/tutor_profile.html', user=tutor)

@@ -5,7 +5,6 @@ class students(Controller):
 		self.load_model('user')
 		self.load_model('student')
 	def loginPage(self):
-		print "dfsfsdfdf"*80
 		if session:
 			if 'status' in session:
 				if session['status']:
@@ -35,18 +34,25 @@ class students(Controller):
 		}
 		student = self.models['student'].login(student_info)
 		if student['status'] == True:
+			session['id']=student['student_info']['id']
+			session['firstName']=student['student_info']['firstName']
+			session['status']="student"
 			return redirect('/students/home/'+str(student['student_info']['id']))
 		for error in student['errors']:
 			flash(error)
 		return redirect('/students/loginPage')
 	def home(self,id):
-		user_info=self.models['user'].fetch_user_info_id(id)
-		session['id']=user_info['id']
-		session['firstName']=user_info['firstName']
-		session['status']="student"
+		print id
+		user_info=self.models['user'].fetch_user_info_id_status(id,"students")
+		if user_info == False:
+			flash("You are not logged in as a student")
+			return redirect('/students/loginPage')
 		return self.load_view('/students/student_home.html')
 	def profile(self,id):
-		student=self.models['user'].fetch_user_info_id(id)
+		student=self.models['user'].fetch_user_info_id_status(id,"students")
+		if student == False:
+			flash("You are not logged in as a student")
+			return redirect('/students/loginPage')
 		return self.load_view('/students/student_profile.html', student=student)
 	def request(self, id):
 		user_id = id

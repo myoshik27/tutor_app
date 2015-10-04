@@ -19,8 +19,8 @@
 	    <h1>{{session['firstName']}}'s Profile</h1>
         <div id="profile">
             <img src={{"http://pokeapi.co/media/img/{}.png".format(session['id'])}}/>
-            <p>Name: {{student['lastName']}},{{student['firstName']}}</p>
-                <p>Member since:{{student['created_at']}}</p>
+            <p>Name: {{user['lastName']}},{{user['firstName']}}</p>
+                <p>Member since:{{user['created_at']}}</p>
                 <p>School: </p>
         </div>
 	</div>
